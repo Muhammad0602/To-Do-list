@@ -3,7 +3,7 @@
 
 <div align="center">
 
-  <h3><b> My Books README</b></h3>
+  <h3><b> My To Do list README</b></h3>
 
 </div>
 
@@ -52,7 +52,7 @@ This is a To Do list, where you can add, remove, mark as read etc your daily tas
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [check live version](https://muhammad0602.github.io/AwesomeBooksES6/)
+- [check live version](https://muhammad0602.github.io/To-Do-list/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
