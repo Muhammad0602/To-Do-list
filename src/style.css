@@ -10,7 +10,7 @@ body {
   background: white;
   padding: 10px;
   margin: 25px;
-  width: 70%;
+  max-width: 600px;
 }
 
 .title {
