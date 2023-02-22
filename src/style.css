@@ -1,0 +1,42 @@
+body {
+  background-color: #eaedf0;
+}
+
+.my-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  background: white;
+  padding: 10px;
+  margin: 25px;
+  max-width: 600px;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+}
+
+.add-input {
+  border: none;
+}
+
+.add-input:placeholder-shown {
+  font-style: italic;
+}
+
+.btn {
+  border: none;
+  text-align: center;
+  width: 100%;
+  padding: 15px;
+  background-color: #eaedf0;
+  color: grey;
+  font-size: 17px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.border-bottom {
+  border-bottom: 1px solid grey;
+  padding-bottom: 15px;
+}
