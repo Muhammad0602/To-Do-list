@@ -10,5 +10,6 @@ export default function listJS(arrList, render, save) {
     input.value = null;
     render();
     save();
+    window.location.reload();
   });
 }
