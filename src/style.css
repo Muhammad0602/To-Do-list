@@ -1,32 +1,75 @@
 body {
-  background-color: #eaedf0;
+  background-color: #e5b525;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
 }
 
 .my-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
-  background: white;
+  background: rgb(155, 218, 226);
   padding: 10px;
-  margin: 25px;
-  max-width: 600px;
+  margin: 25px auto;
+  max-width: 400px;
+  border-radius: 10px;
+  border: 1px solid rgb(0, 255, 30);
 }
 
 .title {
   margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#add-form {
+  display: flex;
+  justify-content: space-between;
 }
 
 .add-input {
   border: none;
+  padding: 0 10px;
+  width: 80%;
+  margin-bottom: -5px;
+  background: inherit;
+}
+
+.add-btn {
+  transform: rotate(90deg);
 }
 
 .add-input:placeholder-shown {
   font-style: italic;
 }
 
-.btn {
-  border: none;
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.list-item:nth-child(1) {
+  padding-top: 0;
+}
+
+.editInput {
+  padding: 5px;
+  width: 250px;
+  border: 1px solid #3aa33a;
+  border-radius: 5px;
+}
+
+.editInput:placeholder-shown {
+  font-style: italic;
+}
+
+.delete-btn {
   text-align: center;
   width: 100%;
   padding: 15px;
@@ -34,9 +77,37 @@ body {
   color: grey;
   font-size: 17px;
   font-family: 'Times New Roman', Times, serif;
+  transition: all 0.7s ease-out;
+}
+
+.delete-btn:hover {
+  background: #ec2d2d;
+  color: white;
+  border-radius: 15px;
+  text-decoration: underline;
 }
 
 .border-bottom {
   border-bottom: 1px solid grey;
   padding-bottom: 15px;
+}
+
+.line-through {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+button {
+  border: none;
+  background: inherit;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.fa-ellipsis-v,
+.fa-trash {
+  pointer-events: none;
 }
