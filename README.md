@@ -29,7 +29,7 @@
 # 📖 To Do list <a name="about-project"></a>
 
 
-This is a To Do list, where you can add, remove, mark as read etc your daily tasks.
+This is a To Do list project, where you can add, remove, mark as read etc your daily tasks.
 
 ## 🛠 Built With <a name="built-with"></a>
 
