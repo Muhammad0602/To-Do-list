@@ -1,4 +1,6 @@
-export default function listJS(arrList, render, save) {
+import {arrList, render, save} from '../index';
+
+export default function listJS() {
   const input = document.querySelector('.add-input');
   const addForm = document.querySelector('#add-form');
 
@@ -10,6 +12,6 @@ export default function listJS(arrList, render, save) {
     input.value = null;
     render();
     save();
-    window.location.reload();
+    // window.location.reload();
   });
 }

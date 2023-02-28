@@ -1,9 +1,11 @@
 import './style.css';
-import listJS from './list.js';
+import listJS from './modules/list.js';
+import deleteCheck from './modules/deleteCheck.js';
+import edit from './modules/edit.js';
 
 //  --------------- tasks array---------------
 const LOCAL_STORAGE_LIST_KEY = 'tasks.list';
-let arrList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+export let arrList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 
 // -------------------------- function which populates task to HTML-----------------------
 
@@ -32,7 +34,7 @@ clearAllDone.innerHTML = '<button class="delete-btn">Clear all completed</button
 list.appendChild(clearAllDone);
 // }
 
-function render() {
+export function render() {
   const listUl = document.querySelector('table');
   listUl.innerHTML = '';
   arrList.forEach((task) => {
@@ -52,64 +54,17 @@ function render() {
 }
 render();
 
-function save() {
+export function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(arrList));
 }
 
-// listUl.addEventListener('click', deleteCheck);
-function deleteCheck(ev) {
-  const elipseBtn = document.querySelectorAll('.elipse-btn');
-  const trashBtn = document.querySelectorAll('.trash-btn');
-  const item = ev.target;
-  if (item.classList[0] === 'check') {
-    const index = item.id;
-    const parent = item.parentElement;
-    parent.classList.toggle('line-through');
-
-    elipseBtn[index].classList.toggle('hide');
-    trashBtn[index].classList.toggle('hide');
-    arrList[index].completed = !arrList[index].completed;
-    save();
-  }
-  if (item.classList[0] === 'trash-btn') {
-    const index = item.previousElementSibling.id;
-    const parent = item.parentElement;
-    parent.remove();
-    arrList.splice(index, 1);
-    arrList.forEach((object, index) => {
-      object.index = index;
-    });
-    save();
-    render();
-  }
-}
-
+//  -----------------Delete and check the task --------------------------
 listUl.addEventListener('click', deleteCheck);
 
-const editInput = document.querySelectorAll('.editInput');
+//-------------------- Edit the content of the task------------------------------
+
+export const editInput = document.querySelectorAll('.editInput');
 const text = document.querySelectorAll('.text');
-// text.forEach((label, index) => label.addEventListener('click', () => edit(label, index)));
-
-function edit(label, index) {
-  label.classList.add('hide');
-  editInput[index].classList.remove('hide');
-  editInput[index].focus();
-  editInput[index].addEventListener('keyup', (event) => {
-    if (event.key === 'Enter' && editInput[index].value !== '') {
-      label.textContent = editInput[index].value;
-      editInput[index].classList.add('hide');
-      label.classList.remove('hide');
-      arrList[index].description = editInput[index].value;
-      save();
-    }
-  });
-
-  editInput[index].addEventListener('focusout', () => {
-    editInput[index].classList.add('hide');
-    label.classList.remove('hide');
-  });
-}
-
 text.forEach((label, index) => label.addEventListener('click', () => edit(label, index)));
 
 // clear tasks that are completed
@@ -127,4 +82,4 @@ deleteBtn.addEventListener('click', () => {
   window.location.reload();
 });
 
-listJS(arrList, render, save);
+listJS();
