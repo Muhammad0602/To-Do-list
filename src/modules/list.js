@@ -1,6 +1,4 @@
-import {arrList, render, save} from '../index';
-
-export default function listJS() {
+export default function listJS(arrList, render, save) {
   const input = document.querySelector('.add-input');
   const addForm = document.querySelector('#add-form');
 

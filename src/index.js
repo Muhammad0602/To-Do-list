@@ -5,7 +5,7 @@ import edit from './modules/edit.js';
 
 //  --------------- tasks array---------------
 const LOCAL_STORAGE_LIST_KEY = 'tasks.list';
-export let arrList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
+let arrList = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
 
 // -------------------------- function which populates task to HTML-----------------------
 
@@ -34,7 +34,7 @@ clearAllDone.innerHTML = '<button class="delete-btn">Clear all completed</button
 list.appendChild(clearAllDone);
 // }
 
-export function render() {
+function render() {
   const listUl = document.querySelector('table');
   listUl.innerHTML = '';
   arrList.forEach((task) => {
@@ -54,18 +54,20 @@ export function render() {
 }
 render();
 
-export function save() {
+function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(arrList));
 }
 
 //  -----------------Delete and check the task --------------------------
-listUl.addEventListener('click', deleteCheck);
+listUl.addEventListener('click', (ev) => {
+  deleteCheck(ev, arrList, render, save);
+});
 
-//-------------------- Edit the content of the task------------------------------
+// -------------------- Edit the content of the task------------------------------
 
-export const editInput = document.querySelectorAll('.editInput');
+const editInput = document.querySelectorAll('.editInput');
 const text = document.querySelectorAll('.text');
-text.forEach((label, index) => label.addEventListener('click', () => edit(label, index)));
+text.forEach((label, index) => label.addEventListener('click', () => edit(label, index, arrList, save, editInput)));
 
 // clear tasks that are completed
 
@@ -82,4 +84,4 @@ deleteBtn.addEventListener('click', () => {
   window.location.reload();
 });
 
-listJS();
+listJS(arrList, render, save);
