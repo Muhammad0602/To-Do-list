@@ -22,6 +22,6 @@ export default function deleteCheck(ev, arrList, render, save, refresh) {
     });
     save();
     render();
-    refresh()
+    refresh();
   }
 }

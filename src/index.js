@@ -54,21 +54,23 @@ function render() {
 }
 render();
 
+// ------ Helper functions------------
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(arrList));
 }
 
-//  -----------------Delete and check the task --------------------------
-listUl.addEventListener('click', (ev) => {
-  deleteCheck(ev, arrList, render, save, refresh);
-});
-
-// -------------------- Edit the content of the task------------------------------
 function refresh() {
   const editInput = document.querySelectorAll('.editInput');
   const text = document.querySelectorAll('.text');
   text.forEach((label, index) => label.addEventListener('click', () => edit(label, index, arrList, save, editInput)));
 }
+
+refresh()
+//  -----------------Delete and check the task --------------------------
+listUl.addEventListener('click', (ev) => {
+  deleteCheck(ev, arrList, render, save, refresh);
+});
+
 // clear tasks that are completed
 
 const deleteBtn = document.querySelector('.delete-btn');
@@ -81,7 +83,8 @@ deleteBtn.addEventListener('click', () => {
   });
   save();
   render();
-  refresh();
+  window.location.reload()
+  // refresh();
 });
 
 listJS(arrList, render, save, refresh);
