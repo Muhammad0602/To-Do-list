@@ -65,7 +65,7 @@ function refresh() {
   text.forEach((label, index) => label.addEventListener('click', () => edit(label, index, arrList, save, editInput)));
 }
 
-refresh()
+refresh();
 //  -----------------Delete and check the task --------------------------
 listUl.addEventListener('click', (ev) => {
   deleteCheck(ev, arrList, render, save, refresh);
@@ -83,7 +83,7 @@ deleteBtn.addEventListener('click', () => {
   });
   save();
   render();
-  window.location.reload()
+  window.location.reload();
   // refresh();
 });
 
