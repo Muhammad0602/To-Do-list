@@ -1,5 +1,7 @@
 import './style.css';
-import listJS from './list.js';
+import listJS from './modules/list.js';
+import deleteCheck from './modules/deleteCheck.js';
+import edit from './modules/edit.js';
 
 //  --------------- tasks array---------------
 const LOCAL_STORAGE_LIST_KEY = 'tasks.list';
@@ -40,7 +42,7 @@ function render() {
     listItem.innerHTML = `
       <div class="${task.completed ? 'line-through' : ''}">
         <input class="check" ${task.completed ? 'checked' : ''} type="checkbox" id="${task.index}"></input>
-        <label class ="text">${task.description}</label>
+        <label class="text">${task.description}</label>
         <input class="editInput hide" type="text" placeholder="Edit your task"></input>
       </div>
       <button class="elipse-btn ${task.completed ? 'hide' : ''}" id="${task.index}"><i class="fa fa-ellipsis-v"></i></button>
@@ -52,65 +54,22 @@ function render() {
 }
 render();
 
+// ------ Helper functions------------
 function save() {
   localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(arrList));
 }
 
-// listUl.addEventListener('click', deleteCheck);
-function deleteCheck(ev) {
-  const elipseBtn = document.querySelectorAll('.elipse-btn');
-  const trashBtn = document.querySelectorAll('.trash-btn');
-  const item = ev.target;
-  if (item.classList[0] === 'check') {
-    const index = item.id;
-    const parent = item.parentElement;
-    parent.classList.toggle('line-through');
-
-    elipseBtn[index].classList.toggle('hide');
-    trashBtn[index].classList.toggle('hide');
-    arrList[index].completed = !arrList[index].completed;
-    save();
-  }
-  if (item.classList[0] === 'trash-btn') {
-    const index = item.previousElementSibling.id;
-    const parent = item.parentElement;
-    parent.remove();
-    arrList.splice(index, 1);
-    arrList.forEach((object, index) => {
-      object.index = index;
-    });
-    save();
-    render();
-  }
+function refresh() {
+  const editInput = document.querySelectorAll('.editInput');
+  const text = document.querySelectorAll('.text');
+  text.forEach((label, index) => label.addEventListener('click', () => edit(label, index, arrList, save, editInput)));
 }
 
-listUl.addEventListener('click', deleteCheck);
-
-const editInput = document.querySelectorAll('.editInput');
-const text = document.querySelectorAll('.text');
-// text.forEach((label, index) => label.addEventListener('click', () => edit(label, index)));
-
-function edit(label, index) {
-  label.classList.add('hide');
-  editInput[index].classList.remove('hide');
-  editInput[index].focus();
-  editInput[index].addEventListener('keyup', (event) => {
-    if (event.key === 'Enter' && editInput[index].value !== '') {
-      label.textContent = editInput[index].value;
-      editInput[index].classList.add('hide');
-      label.classList.remove('hide');
-      arrList[index].description = editInput[index].value;
-      save();
-    }
-  });
-
-  editInput[index].addEventListener('focusout', () => {
-    editInput[index].classList.add('hide');
-    label.classList.remove('hide');
-  });
-}
-
-text.forEach((label, index) => label.addEventListener('click', () => edit(label, index)));
+refresh();
+//  -----------------Delete and check the task --------------------------
+listUl.addEventListener('click', (ev) => {
+  deleteCheck(ev, arrList, render, save, refresh);
+});
 
 // clear tasks that are completed
 
@@ -125,6 +84,7 @@ deleteBtn.addEventListener('click', () => {
   save();
   render();
   window.location.reload();
+  // refresh();
 });
 
-listJS(arrList, render, save);
+listJS(arrList, render, save, refresh);

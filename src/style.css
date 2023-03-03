@@ -52,6 +52,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   padding-top: 10px;
+  transition: all 1s ease-out;
 }
 
 .list-item:nth-child(1) {
