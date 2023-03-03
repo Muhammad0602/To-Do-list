@@ -1,4 +1,4 @@
-export default function deleteCheck(ev, arrList, render, save) {
+export default function deleteCheck(ev, arrList, render, save, refresh) {
   const elipseBtn = document.querySelectorAll('.elipse-btn');
   const trashBtn = document.querySelectorAll('.trash-btn');
   const item = ev.target;
@@ -22,5 +22,6 @@ export default function deleteCheck(ev, arrList, render, save) {
     });
     save();
     render();
+    refresh()
   }
 }

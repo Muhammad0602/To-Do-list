@@ -42,7 +42,7 @@ function render() {
     listItem.innerHTML = `
       <div class="${task.completed ? 'line-through' : ''}">
         <input class="check" ${task.completed ? 'checked' : ''} type="checkbox" id="${task.index}"></input>
-        <label class ="text">${task.description}</label>
+        <label class="text">${task.description}</label>
         <input class="editInput hide" type="text" placeholder="Edit your task"></input>
       </div>
       <button class="elipse-btn ${task.completed ? 'hide' : ''}" id="${task.index}"><i class="fa fa-ellipsis-v"></i></button>
@@ -60,15 +60,15 @@ function save() {
 
 //  -----------------Delete and check the task --------------------------
 listUl.addEventListener('click', (ev) => {
-  deleteCheck(ev, arrList, render, save);
+  deleteCheck(ev, arrList, render, save, refresh);
 });
 
 // -------------------- Edit the content of the task------------------------------
-
-const editInput = document.querySelectorAll('.editInput');
-const text = document.querySelectorAll('.text');
-text.forEach((label, index) => label.addEventListener('click', () => edit(label, index, arrList, save, editInput)));
-
+function refresh() {
+  const editInput = document.querySelectorAll('.editInput');
+  const text = document.querySelectorAll('.text');
+  text.forEach((label, index) => label.addEventListener('click', () => edit(label, index, arrList, save, editInput)));
+}
 // clear tasks that are completed
 
 const deleteBtn = document.querySelector('.delete-btn');
@@ -81,7 +81,7 @@ deleteBtn.addEventListener('click', () => {
   });
   save();
   render();
-  window.location.reload();
+  refresh();
 });
 
-listJS(arrList, render, save);
+listJS(arrList, render, save, refresh);
