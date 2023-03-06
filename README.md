@@ -29,7 +29,7 @@
 # 📖 To Do list <a name="about-project"></a>
 
 
-This is a To Do list project, where you can add, remove, mark as read etc your daily tasks. Built with JavaScript.
+This is a To Do list project, where you can add, remove, mark as read your daily tasks. It was build with JavaScript.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -45,7 +45,8 @@ This is a To Do list project, where you can add, remove, mark as read etc your d
 
 ### Key Features <a name="key-features"></a>
 
-- Interactions.
+- Easy to use.
+- Responsive.
 - Time tracking.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
